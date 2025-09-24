@@ -11,125 +11,66 @@ if (hamb && menu){
   });
 }
 
-// TABELA DE PREÇOS
-const BASE = {
-  eventos: {
-    brilho:    { nome: "Brilho",           preco: 990 },
-    encanto:   { nome: "Encanto",          preco: 1690 },
-    eternidade:{ nome: "Eternidade",       preco: 2290 },
-    gala:      { nome: "Celebração Total", preco: 3290 }
-  },
-  retratos: {
-    essencia:  { nome: "Essência",  preco: 390 },
-    horizonte: { nome: "Horizonte", preco: 690 },
-    majestade: { nome: "Majestade", preco: 1190 }
-  },
-  extras: {
-    fotoExtra: 15,
-    clipUnit: 150,
-    makingExtra: 300,
-    km: 2.60,
-    album: 520,
-    assistenteHora: 220,
-    expressPerc: 0.30
-  }
-};
+/* ===== Portfólio: Lightbox ===== */
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lightboxImg');
+const lbClose = document.querySelector('.lightbox__close');
 
-// Atualiza valores visuais nos cards
-document.querySelectorAll('[data-key]').forEach(el=>{
-  const key = el.getAttribute('data-key');
-  const map = { ...BASE.eventos, ...BASE.retratos };
-  if (map[key]) el.textContent = map[key].preco;
-});
-
-// Preenche select de pacotes da calculadora
-const tipoSel    = document.getElementById('tipo');
-const pacoteSel  = document.getElementById('pacote');
-
-function fillPacotes(){
-  const group = BASE[tipoSel.value];
-  pacoteSel.innerHTML = "";
-  Object.entries(group).forEach(([k,v])=>{
-    const o = document.createElement('option');
-    o.value = k; o.textContent = v.nome; pacoteSel.appendChild(o);
-  });
+function lbOpen(src){
+  lbImg.src = src;
+  lb.style.display = 'flex';
+  lb.setAttribute('aria-hidden','false');
 }
-document.addEventListener('DOMContentLoaded', fillPacotes);
-tipoSel.addEventListener('change', fillPacotes);
-fillPacotes();
-
-// Calculadora
-const formCalc = document.getElementById('calcForm');
-const totalEl  = document.getElementById('total');
-
-function calcTotal(){
-  const data = new FormData(formCalc);
-  const tipo = data.get('tipo');
-  const pac  = data.get('pacote');
-  const extrasFoto = Number(data.get('extrasFoto')||0);
-  const clips      = Number(data.get('clips')||0);
-  const km         = Number(data.get('km')||0);
-  const album      = data.get('album')==='on';
-  const assistente = data.get('assistente')==='on';
-  const express    = data.get('express')==='on';
-  const making     = data.get('making')==='on';
-
-  let total = BASE[tipo][pac].preco;
-  total += extrasFoto * BASE.extras.fotoExtra;
-  total += clips      * BASE.extras.clipUnit;
-  total += km         * BASE.extras.km;
-  if (album)      total += BASE.extras.album;
-  if (assistente) total += BASE.extras.assistenteHora;
-  if (making)     total += BASE.extras.makingExtra;
-  if (express)    total *= (1 + BASE.extras.expressPerc);
-
-  totalEl.textContent = total.toFixed(2).replace('.', ',');
-  return total;
+function lbCloseFn(){
+  lb.style.display = 'none';
+  lb.setAttribute('aria-hidden','true');
+  lbImg.removeAttribute('src');
 }
-formCalc.addEventListener('input',  calcTotal);
-formCalc.addEventListener('change', calcTotal);
-calcTotal();
-
-// WhatsApp (sem redeclarar a constante global!)
-const WA_NUMBER = window.WHATSAPP_NUMBER || "5543988632851";
-
-formCalc.addEventListener('submit', (e)=>{
-  e.preventDefault();
-  const total = calcTotal();
-  const d = new FormData(formCalc);
-  const tipo = d.get('tipo');
-  const pac  = d.get('pacote');
-  const nomePacote = BASE[tipo][pac].nome;
-
-  const extrasFoto = d.get('extrasFoto');
-  const clips      = d.get('clips');
-  const km         = d.get('km');
-  const express    = d.get('express')==='on' ? 'Sim' : 'Não';
-  const album      = d.get('album')==='on' ? 'Sim' : 'Não';
-  const assist     = d.get('assistente')==='on' ? 'Sim' : 'Não';
-  const making     = d.get('making')==='on' ? 'Sim' : 'Não';
-
-  const msg = `Olá, Erick! Simulação: ${nomePacote}.
-Todas as fotos boas tratadas — sem limite.
-Fotos extras: ${extrasFoto}; Clipes: ${clips}; Km: ${km};
-Álbum: ${album}; Assistente: ${assist}; Making of: ${making}; Entrega expressa: ${express}.
-Total estimado: R$ ${total.toFixed(2).replace('.', ',')}.
-Pagamento: 50% no contrato + 50% na entrega das fotos.`;
-
-  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`,'_blank');
+document.querySelectorAll('.shot img').forEach(img=>{
+  img.addEventListener('click', ()=> lbOpen(img.dataset.full || img.src));
 });
+lbClose.addEventListener('click', lbCloseFn);
+lb.addEventListener('click', (e)=>{ if(e.target===lb){ lbCloseFn(); }});
+document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ lbCloseFn(); }});
 
-// Form de contato
-const form = document.getElementById('formOrcamento');
-form.addEventListener('submit',(e)=>{
+/* ===== WhatsApp: número fixo do Erick ===== */
+const WA_NUMBER = (window.WHATSAPP_NUMBER || "5543988632851").replace(/\D/g,''); // garante só dígitos
+
+function openWhatsAppMessage(text){
+  const url = `https://api.whatsapp.com/send?phone=${WA_NUMBER}&text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank');
+}
+
+/* Botão zap direto */
+const zapDireto = document.getElementById('btnZapDireto');
+if (zapDireto){
+  zapDireto.href = `https://api.whatsapp.com/send?phone=${WA_NUMBER}&text=${encodeURIComponent("Oi Erick! Quero falar sobre fotos.")}`;
+}
+
+/* Form — Plano Personalizado */
+const formPlano = document.getElementById('formPlano');
+formPlano.addEventListener('submit', (e)=>{
   e.preventDefault();
-  const d = new FormData(form);
-  const nome = d.get('nome');
-  const tipoEvento = d.get('tipoEvento');
-  const local = d.get('local')||'';
-  const dataDesejada = d.get('data')||'';
-  const detalhes = d.get('detalhes')||'';
-  const msg = `Olá, Erick! Sou ${nome}. Tipo: ${tipoEvento}. Local: ${local}. Data: ${dataDesejada}. Detalhes: ${detalhes}.
-Todas as fotos boas tratadas — sem limite. Pagamento: 50% no contrato + 50% na entrega das fotos.`;
-  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`,'_blank');
+  const d = new FormData(formPlano);
+
+  const msg =
+`Olá, Erick! Montei meu plano personalizado:
+• Tipo: ${d.get('tipo')}
+• Data: ${d.get('data')}
+• Duração: ${d.get('duracao')}
+• Mínimo de fotos que espero: ${d.get('minFotos') || 'a combinar'}
+• Clipes curtos: ${d.get('clips') || 0}
+• Making of compacto: ${d.get('making') ? 'Sim' : 'Não'}
+• Álbum 20×20: ${d.get('album') ? 'Sim' : 'Não'}
+• Segundo fotógrafo/assistente: ${d.get('assistente') ? 'Sim' : 'Não'}
+• Entrega expressa: ${d.get('express') ? 'Sim' : 'Não'}
+• Local/Bairro: ${d.get('local') || '—'}
+• Km fora de Ibiporã: ${d.get('km') || 0}
+• Nome: ${d.get('nome')}
+• WhatsApp: ${d.get('zap') || '—'}
+• Detalhes: ${d.get('detalhes') || '—'}
+
+Importante: você entrega TODAS as fotos boas tratadas, sem limite. Aguardo o valor.`;
+
+  openWhatsAppMessage(msg);
 });
