@@ -12,13 +12,13 @@
 </head>
 <body>
   <!-- NAV -->
-  <header class="nav">
+  <header class="nav" id="topo">
     <div class="container nav__inner">
-      <a class="brand" href="#home">
-        <img class="avatar" src="https://i.ibb.co/hFDLw7Fq/Design-sem-nome.png" alt="byErickGarcia" />
+      <a class="brand" href="#home" aria-label="Início">
+        <img class="avatar" src="https://i.ibb.co/hFDLw7Fq/Design-sem-nome.png" alt="byErickGarcia — foto de perfil" />
         <div class="brand__text">
           <strong>byErickGarcia</strong>
-          <span>Fotografo</span>
+          <span>Fotógrafo</span>
         </div>
       </a>
 
@@ -26,7 +26,7 @@
         <span></span><span></span><span></span>
       </button>
 
-      <nav id="menu">
+      <nav id="menu" class="menu">
         <a href="#portfolio">Portfólio</a>
         <a href="#eventos">Festas & Infantil</a>
         <a href="#retratos">Retratos</a>
@@ -37,24 +37,24 @@
   </header>
 
   <!-- HERO -->
-  <main id="home">
+  <main id="home" tabindex="-1">
     <section class="hero container">
       <div class="hero__text">
         <h1>Fotos que elevam sua festa e sua imagem.</h1>
-        <p>Ibiporã, Londrina e região. Direção leve, captação híbrida (Canon + iPhone 16 Pro) e **edição profissional** (Lightroom + Photoshop + CapCut Pro).</p>
+        <p>Ibiporã, Londrina e região. Direção leve, captação híbrida (Canon SL3 + iPhone 16 Pro) e edição profissional (Lightroom, Photoshop e CapCut Pro).</p>
         <div class="hero__cta">
           <a href="#eventos" class="btn">Ver pacotes</a>
           <a href="#portfolio" class="btn btn--ghost">Ver portfólio</a>
         </div>
-        <ul class="chips">
-          <li>Todas as fotos tratadas</li>
+        <ul class="chips" aria-label="Diferenciais">
+          <li>Todas as fotos boas tratadas</li>
           <li>Clipes prontos para redes</li>
           <li>Prazos definidos + contrato</li>
         </ul>
       </div>
       <div class="hero__cover">
         <div class="hero__glass">
-          <img src="https://i.ibb.co/7JSbCqDG/IMG-0491.jpg" alt="Capa — Erick Garcia" />
+          <img src="https://i.ibb.co/7JSbCqDG/IMG-0491.jpg" alt="Capa — fotografia por Erick Garcia" />
         </div>
       </div>
     </section>
@@ -89,7 +89,7 @@
           <ul class="features">
             <li>Evento curto</li>
             <li>Clipes: 3 unidades (até 30s)</li>
-            <li>Prazos: fotos 7 d.u. · clipes 3 d.u.</li>
+            <li>Prazos: fotos até 7 dias úteis · clipes até 3 dias úteis</li>
           </ul>
           <a href="#contato" class="btn">Quero este</a>
         </article>
@@ -101,7 +101,7 @@
           <ul class="features">
             <li>Evento médio</li>
             <li>Clipes: 5 (30s–1min) + making of curto</li>
-            <li>Prazos: fotos 8 d.u. · clipes 4 d.u.</li>
+            <li>Prazos: fotos até 8 dias úteis · clipes até 4 dias úteis</li>
           </ul>
           <a href="#contato" class="btn">Quero este</a>
         </article>
@@ -111,8 +111,8 @@
           <p class="price">R$ <span data-key="eternidade">2290</span></p>
           <ul class="features">
             <li>Evento longo</li>
-            <li>Clipes: 8 (30s–1min) + making of 1min</li>
-            <li>Prazos: fotos 10 d.u. · clipes 5 d.u.</li>
+            <li>Clipes: 8 (30s–1min) + making of 1 min</li>
+            <li>Prazos: fotos até 10 dias úteis · clipes até 5 dias úteis</li>
           </ul>
           <a href="#contato" class="btn">Quero este</a>
         </article>
@@ -122,8 +122,8 @@
           <p class="price">R$ <span data-key="gala">3290</span></p>
           <ul class="features">
             <li>Do início ao fim da festa (até o encerramento)</li>
-            <li>Clipes: 10+ + making of 2min</li>
-            <li>Prazos: fotos 12 d.u. · clipes 7 d.u.</li>
+            <li>Clipes: 10+ + making of 2 min</li>
+            <li>Prazos: fotos até 12 dias úteis · clipes até 7 dias úteis</li>
           </ul>
           <a href="#contato" class="btn">Quero este</a>
         </article>
@@ -134,9 +134,9 @@
         <ul>
           <li>Álbum 20×20 (20 páginas) — R$ 520</li>
           <li>Segundo fotógrafo/assistente — R$ 220/h</li>
-          <li>Entrega expressa (fotos −2 d.u. / clipes −1 d.u.) — +30%</li>
+          <li>Entrega expressa (fotos −2 dias úteis / clipes −1 dia útil) — +30%</li>
           <li>Deslocamento fora de Ibiporã — R$ 2,60/km</li>
-          <li>Hora extra (quando aplicável) — R$ 240/h</li>
+          <li>Hora extra (quando aplicável) — R$ 250/h</li>
         </ul>
       </div>
     </section>
@@ -155,7 +155,7 @@
           <ul class="features">
             <li>Sessão curta</li>
             <li>Todas as fotos boas tratadas</li>
-            <li>Prazo: até 5 d.u.</li>
+            <li>Prazo: até 5 dias úteis</li>
           </ul>
           <a href="#contato" class="btn">Quero este</a>
         </article>
@@ -166,7 +166,7 @@
           <ul class="features">
             <li>Sessão média</li>
             <li>Todas as fotos + 1 vídeo vertical (15s)</li>
-            <li>Prazo: até 6 d.u.</li>
+            <li>Prazo: até 6 dias úteis</li>
           </ul>
           <a href="#contato" class="btn">Quero este</a>
         </article>
@@ -177,7 +177,7 @@
           <ul class="features">
             <li>Sessão premium (várias locações)</li>
             <li>Todas as fotos + 2 vídeos verticais (30s)</li>
-            <li>Prazo: até 7 d.u.</li>
+            <li>Prazo: até 7 dias úteis</li>
           </ul>
           <a href="#contato" class="btn">Quero este</a>
         </article>
@@ -191,36 +191,33 @@
         <p class="muted">Simule valores com extras e envie por WhatsApp.</p>
       </div>
 
-      <form id="calcForm" class="form">
+      <form id="calcForm" class="form" novalidate>
         <div class="row">
           <label>Tipo
-            <select name="tipo" id="tipo">
+            <select name="tipo" id="tipo" aria-label="Tipo de serviço">
               <option value="eventos">Festas & Infantil</option>
               <option value="retratos">Retratos</option>
             </select>
           </label>
           <label>Pacote
-            <select name="pacote" id="pacote"></select>
+            <select name="pacote" id="pacote" aria-label="Pacote"></select>
           </label>
         </div>
 
         <div class="row">
           <label>Fotos extras tratadas
-            <input type="number" min="0" name="extrasFoto" value="0">
+            <input type="number" min="0" name="extrasFoto" value="0" inputmode="numeric">
           </label>
           <label>Km fora de Ibiporã
-            <input type="number" min="0" name="km" value="0">
+            <input type="number" min="0" name="km" value="0" inputmode="numeric">
           </label>
         </div>
 
-        <div class="row">
-          <label class="check"><input type="checkbox" name="album"> Álbum 20×20 (20p)</label>
+        <div class="row row--checks">
+          <label class="check"><input type="checkbox" name="album"> Álbum 20×20 (20 páginas)</label>
           <label class="check"><input type="checkbox" name="assistente"> Segundo fotógrafo/assistente</label>
-        </div>
-
-        <div class="row">
-          <label class="check"><input type="checkbox" name="express"> Entrega expressa (+20%)</label>
-          <label class="check"><input type="checkbox" name="making"> Incluir making of extra (+R$ 180)</label>
+          <label class="check"><input type="checkbox" name="express"> Entrega expressa (+30%)</label>
+          <label class="check"><input type="checkbox" name="making"> Incluir making of extra (+R$ 240)</label>
         </div>
 
         <div class="total">Total estimado: <strong>R$ <span id="total">0,00</span></strong></div>
@@ -234,16 +231,26 @@
         <h2>Fechar orçamento</h2>
         <p class="muted">Respondo rápido 🙂</p>
       </div>
-      <form id="formOrcamento" class="form">
+      <form id="formOrcamento" class="form" novalidate>
         <div class="row">
-          <input type="text" name="nome" placeholder="Seu nome" required>
-          <input type="text" name="tipoEvento" placeholder="Tipo (festa infantil, aniversário, retrato...)" required>
+          <label>Nome
+            <input type="text" name="nome" placeholder="Seu nome" required>
+          </label>
+          <label>Tipo
+            <input type="text" name="tipoEvento" placeholder="Festa infantil, aniversário, retrato..." required>
+          </label>
         </div>
         <div class="row">
-          <input type="text" name="local" placeholder="Local / Bairro">
-          <input type="date" name="data" placeholder="Data desejada">
+          <label>Local / Bairro
+            <input type="text" name="local" placeholder="Local / Bairro">
+          </label>
+          <label>Data desejada
+            <input type="date" name="data">
+          </label>
         </div>
-        <textarea name="detalhes" rows="4" placeholder="Conte um pouco sobre o que você precisa (tema, duração, nº convidados, looks...)"></textarea>
+        <label>Detalhes
+          <textarea name="detalhes" rows="4" placeholder="Tema, duração, nº convidados, looks..."></textarea>
+        </label>
         <button type="submit" class="btn btn--block">Chamar no WhatsApp</button>
       </form>
     </section>
@@ -253,7 +260,7 @@
   <footer class="footer">
     <div class="container footer__inner">
       <p>© <span id="year"></span> byErickGarcia — Ibiporã & Londrina</p>
-      <a href="#home" class="to-top" aria-label="Topo">↑ Topo</a>
+      <a href="#topo" class="to-top" aria-label="Voltar ao topo">↑ Topo</a>
     </div>
   </footer>
 
