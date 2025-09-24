@@ -10,7 +10,7 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
   font-family:Poppins,Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
-.container{width:min(1120px,92vw);margin:0 auto}
+.container{width:min(1120px,92vw);margin:0 auto;overflow-x:hidden}
 .section{padding:88px 0}
 .section__head{margin-bottom:18px}
 .section__head h2{font-size:clamp(1.6rem,3.4vw,2.2rem);margin:0 0 6px}
@@ -46,6 +46,7 @@ h1{font-size:clamp(2rem,4.6vw,3.2rem);line-height:1.12;margin:0 0 10px}
 .btn{display:inline-block;padding:14px 20px;border-radius:14px;font-weight:800;
   background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 8px 22px var(--ring)}
 .btn--ghost{background:transparent;border:1px solid rgba(255,255,255,.16)}
+.btn--block{width:100%}
 .hero__cover img{border-radius:22px;border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow);object-fit:cover;max-height:520px;width:100%}
 
 /* GRID & CARDS */
@@ -69,15 +70,17 @@ h1{font-size:clamp(2rem,4.6vw,3.2rem);line-height:1.12;margin:0 0 10px}
 .addons ul{color:#cfd1db;list-style:disc;margin:6px 0 0 20px}
 
 /* FORMS */
-.form{display:grid;gap:14px;background:var(--panel);padding:18px;border-radius:18px;border:1px solid rgba(255,255,255,.06)}
-.form .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form{display:grid;gap:14px;background:var(--panel);padding:18px;border-radius:18px;border:1px solid rgba(255,255,255,.06);max-width:100%}
+.form .row{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%}
 .form .row--checks{grid-template-columns:1fr 1fr}
+.form label{display:flex;flex-direction:column;gap:8px;word-break:break-word}
 .form input,.form textarea,.form select{
   width:100%;padding:14px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.12);
   background:#0d0f15;color:var(--text)}
-.check{display:flex;align-items:center;gap:10px}
+.check{flex-direction:row;align-items:flex-start;gap:10px}
+.check input[type="checkbox"]{transform:translateY(3px)}
+.check.single{grid-column:1 / -1}
 .total{font-size:1.2rem;margin-top:4px}
-.btn--block{width:100%}
 
 /* FOOTER */
 .footer{border-top:1px solid rgba(255,255,255,.06);margin-top:64px}
