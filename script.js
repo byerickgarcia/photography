@@ -11,7 +11,7 @@ if (hamb && menu){
   });
 }
 
-// Preços revisados (com margem)
+// Preços e extras
 const BASE = {
   eventos: {
     brilho:    { nome: "Brilho",           preco: 990 },
@@ -24,7 +24,15 @@ const BASE = {
     horizonte: { nome: "Horizonte", preco: 690 },
     majestade: { nome: "Majestade", preco: 1190 }
   },
-  extras: { fotoExtra:15, km:2.60, album:520, assistenteHora:220, expressPerc:0.30, makingExtra:240 }
+  extras: {
+    fotoExtra: 15,
+    clipUnit: 150,      // clipe 15–30s
+    makingExtra: 300,   // making of 1–2 min
+    km: 2.60,
+    album: 520,
+    assistenteHora: 220,
+    expressPerc: 0.30
+  }
 };
 
 // Atualiza <span data-key>
@@ -57,6 +65,7 @@ function calcTotal(){
   const tipo = data.get('tipo');
   const pac = data.get('pacote');
   const extrasFoto = Number(data.get('extrasFoto')||0);
+  const clips = Number(data.get('clips')||0);
   const km = Number(data.get('km')||0);
   const album = data.get('album')==='on';
   const assistente = data.get('assistente')==='on';
@@ -65,6 +74,7 @@ function calcTotal(){
 
   let total = BASE[tipo][pac].preco;
   total += extrasFoto * BASE.extras.fotoExtra;
+  total += clips * BASE.extras.clipUnit;
   total += km * BASE.extras.km;
   if (album) total += BASE.extras.album;
   if (assistente) total += BASE.extras.assistenteHora;
@@ -88,7 +98,20 @@ formCalc.addEventListener('submit', (e)=>{
   const tipo = d.get('tipo');
   const pac = d.get('pacote');
   const nomePacote = BASE[tipo][pac].nome;
-  const msg = `Olá, Erick! Quero uma simulação agressiva: ${nomePacote}. Total estimado: R$ ${total.toFixed(2).replace('.', ',')}. Pagamento: 50% no contrato + 50% na entrega das fotos.`;
+  const extrasFoto = d.get('extrasFoto');
+  const clips = d.get('clips');
+  const km = d.get('km');
+  const express = d.get('express')==='on' ? 'Sim' : 'Não';
+  const album = d.get('album')==='on' ? 'Sim' : 'Não';
+  const assist = d.get('assistente')==='on' ? 'Sim' : 'Não';
+  const making = d.get('making')==='on' ? 'Sim' : 'Não';
+
+  const msg = `Olá, Erick! Simulação: ${nomePacote}.
+Todas as fotos boas tratadas — sem limite.
+Fotos extras: ${extrasFoto}; Clipes: ${clips}; Km: ${km};
+Álbum: ${album}; Assistente: ${assist}; Making of: ${making}; Entrega expressa: ${express}.
+Total estimado: R$ ${total.toFixed(2).replace('.', ',')}.
+Pagamento: 50% no contrato + 50% na entrega das fotos.`;
   window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`,'_blank');
 });
 
@@ -101,6 +124,7 @@ form.addEventListener('submit',(e)=>{
   const local = d.get('local')||'';
   const dataDesejada = d.get('data')||'';
   const detalhes = d.get('detalhes')||'';
-  const msg = `Olá, Erick! Sou ${nome}. Tipo: ${tipoEvento}. Local: ${local}. Data: ${dataDesejada}. Detalhes: ${detalhes}. Pagamento: 50% no contrato + 50% na entrega das fotos.`;
+  const msg = `Olá, Erick! Sou ${nome}. Tipo: ${tipoEvento}. Local: ${local}. Data: ${dataDesejada}. Detalhes: ${detalhes}.
+Todas as fotos boas tratadas — sem limite. Pagamento: 50% no contrato + 50% na entrega das fotos.`;
   window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`,'_blank');
 });
