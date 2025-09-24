@@ -1,63 +1,98 @@
-// Ano no rodapé
-document.getElementById('year').textContent = new Date().getFullYear();
-
-// Menu mobile
-const hamb = document.getElementById('hamb');
-const menu = document.getElementById('menu');
-if (hamb && menu){
-  hamb.addEventListener('click', ()=>{
-    const open = menu.classList.toggle('open');
-    hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
+/* Tema premium — byErickGarcia */
+:root{
+  --bg:#0b0c0f; --panel:#11131a; --surface:#171a22;
+  --text:#f3f4f6; --muted:#a5a8b4;
+  --accent:#7d5cff; --accent2:#a687ff; --ring:rgba(125,92,255,.35);
+  --radius:16px; --shadow:0 14px 44px rgba(0,0,0,.48);
 }
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
+  font-family:Poppins,Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+small.hint{color:var(--muted);display:block;margin-top:6px}
+.center{text-align:center}
 
-// Lightbox do portfólio
-const lb = document.getElementById('lightbox');
-const lbImg = document.getElementById('lightboxImg');
-document.querySelectorAll('.shot img').forEach(img=>{
-  img.addEventListener('click', ()=>{
-    lbImg.src = img.dataset.full || img.src;
-    lb.classList.add('open'); lb.setAttribute('aria-hidden','false');
-  });
-});
-document.querySelector('.lightbox__close').addEventListener('click', ()=>{
-  lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); lbImg.src="";
-});
-lb.addEventListener('click', (e)=>{ if(e.target===lb) { lb.classList.remove('open'); lbImg.src=""; }});
+.container{width:min(1160px,92vw);margin:0 auto;overflow-x:hidden}
+.section{padding:88px 0}
+.section__head{margin-bottom:18px}
+.section__head h2{font-size:clamp(1.6rem,3.4vw,2.2rem);margin:0 0 6px}
+.section__head .muted{color:var(--muted)}
+.muted{color:var(--muted)}
 
-// WhatsApp global
-const WA_NUMBER = window.WHATSAPP_NUMBER || "5543988632851";
+/* NAV */
+.nav{position:sticky;top:0;z-index:50;
+  background:linear-gradient(180deg,rgba(11,12,15,.96),rgba(11,12,15,.75));
+  backdrop-filter:blur(10px) saturate(1.1); border-bottom:1px solid rgba(255,255,255,.06)}
+.nav__inner{display:flex;align-items:center;justify-content:space-between;padding:16px 4vw}
+.brand{display:flex;align-items:center;gap:12px}
+.avatar{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.1);box-shadow:0 0 12px var(--ring)}
+.brand__text strong{font-weight:800;display:block}
+.brand__text span{color:var(--muted);font-size:.92rem}
+.menu{display:flex;gap:18px;align-items:center}
+.menu a{opacity:.9} .menu a:hover{opacity:1}
+.btn--sm{padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:transparent}
+.hamb{display:none;background:none;border:0;cursor:pointer}
+.hamb span{display:block;width:22px;height:2px;background:#fff;margin:5px 0;border-radius:2px}
 
-// Botão zap direto
-document.getElementById('btnZapDireto').setAttribute(
-  'href',
-  `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Oi Erick! Quero falar sobre fotos.")}
-`);
+/* HERO */
+.hero{padding:28px 0 12px;background:
+  radial-gradient(800px 420px at 10% 0%, rgba(125,92,255,.18), transparent 60%)}
+.hero__grid{display:grid;grid-template-columns:1.02fr .98fr;gap:36px;align-items:center}
+h1{font-size:clamp(2rem,4.6vw,3.2rem);line-height:1.12;margin:0 0 10px}
+.hl{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero__text p{color:var(--muted);margin:0 0 14px}
+.bullets{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:8px;color:#d7d9e2}
+.hero__cta{display:flex;gap:12px;margin:16px 0 10px}
+.payline{color:#cfd1db;margin:6px 0 0}
+.btn{display:inline-block;padding:14px 20px;border-radius:14px;font-weight:800;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 8px 22px var(--ring)}
+.btn--ghost{background:transparent;border:1px solid rgba(255,255,255,.16)}
+.btn--block{width:100%}
+.hero__cover img{border-radius:22px;border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow);object-fit:cover;max-height:520px;width:100%}
 
-// Form — Plano Personalizado
-const formPlano = document.getElementById('formPlano');
-formPlano.addEventListener('submit', (e)=>{
-  e.preventDefault();
-  const d = new FormData(formPlano);
+/* PORTFÓLIO — thumbs maiores */
+.grid{display:grid;gap:18px}
+.grid--portfolio{
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); /* thumbs maiores */
+}
+.shot{position:relative;background:var(--panel);padding:12px;border-radius:18px;border:1px solid rgba(255,255,255,.06);overflow:hidden}
+.shot img{border-radius:12px;aspect-ratio:3/4;object-fit:cover;transition:transform .25s ease}
+.shot:hover img{transform:scale(1.03)}
 
-  const msg =
-`Olá, Erick! Montei meu plano personalizado:
-• Tipo: ${d.get('tipo')}
-• Data: ${d.get('data')}
-• Duração: ${d.get('duracao')}
-• Mínimo de fotos que espero: ${d.get('minFotos') || 'a combinar'}
-• Clipes curtos: ${d.get('clips') || 0}
-• Making of compacto: ${d.get('making') ? 'Sim' : 'Não'}
-• Álbum 20×20: ${d.get('album') ? 'Sim' : 'Não'}
-• Segundo fotógrafo/assistente: ${d.get('assistente') ? 'Sim' : 'Não'}
-• Entrega expressa: ${d.get('express') ? 'Sim' : 'Não'}
-• Local/Bairro: ${d.get('local') || '—'}
-• Km fora de Ibiporã: ${d.get('km') || 0}
-• Nome: ${d.get('nome')}
-• WhatsApp: ${d.get('zap') || '—'}
-• Detalhes: ${d.get('detalhes') || '—'}
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;padding:24px;z-index:60}
+.lightbox img{max-width:min(92vw,1100px);max-height:86vh;border-radius:16px;box-shadow:var(--shadow)}
+.lightbox__close{position:absolute;top:18px;right:22px;font-size:2.2rem;background:transparent;border:0;color:#fff;cursor:pointer}
 
-Importante: você entrega TODAS as fotos boas tratadas, sem limite. Aguardo o valor.`;
+/* FORM */
+.form{display:grid;gap:14px;background:var(--panel);padding:18px;border-radius:18px;border:1px solid rgba(255,255,255,.06);max-width:100%}
+.form.mini{max-width:520px;margin:0 auto}
+.form .row{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%}
+.form .row--checks{grid-template-columns:1fr 1fr 1fr}
+.form label{display:flex;flex-direction:column;gap:8px;word-break:break-word}
+.form input,.form textarea,.form select{
+  width:100%;padding:14px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.12);
+  background:#0d0f15;color:var(--text)}
+.check{flex-direction:row;align-items:flex-start;gap:10px}
+.check input[type="checkbox"]{transform:translateY(3px)}
+.check.single{grid-column:1 / -1}
 
-  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`,'_blank');
-});
+/* FOOTER */
+.footer{border-top:1px solid rgba(255,255,255,.06);margin-top:64px}
+.footer__inner{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+.to-top{opacity:.85}
+
+/* RESPONSIVO */
+@media (max-width:1100px){
+  .hero__grid{grid-template-columns:1fr;gap:24px}
+}
+@media (max-width:760px){
+  .menu{position:absolute;top:72px;left:0;right:0;display:none;flex-direction:column;gap:12px;
+    background:rgba(11,12,15,.98);border-bottom:1px solid rgba(255,255,255,.06);padding:14px 4vw}
+  .hamb{display:block}
+  .menu.open{display:flex}
+  .form .row{grid-template-columns:1fr}
+  .form .row--checks{grid-template-columns:1fr}
+  .section{padding:64px 0}
+}
