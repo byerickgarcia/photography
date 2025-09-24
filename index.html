@@ -45,11 +45,11 @@
         <div class="hero__text">
           <h1>Momentos da sua família <span class="hl">com presença, emoção e acabamento premium.</span></h1>
           <p>
-            Aqui é simples: eu fotografo com foco total na sua história e você recebe
-            <strong>todas as fotos boas tratadas — sem limite</strong>, em alta e web, dentro do prazo combinado.
+            Eu fotografo com foco total na sua história e você recebe
+            <strong>todas as fotos boas tratadas — sem limite</strong>, em alta e web, no prazo combinado.
           </p>
           <ul class="bullets">
-            <li>Portfólio real: <strong>todas as fotos abaixo foram feitas por mim</strong></li>
+            <li>Portfólio real: todas as fotos abaixo foram feitas por mim</li>
             <li>Prazos definidos em contrato + atendimento rápido</li>
             <li>Entrega organizada e segura</li>
           </ul>
@@ -65,26 +65,26 @@
       </div>
     </section>
 
-    <!-- PORTFÓLIO (grid grande + lightbox) -->
+    <!-- PORTFÓLIO -->
     <section id="portfolio" class="container section">
       <div class="section__head">
         <h2>Portfólio</h2>
-        <p class="muted">Clique nas imagens para ver em tamanho maior.</p>
+        <p class="muted">Toque nas imagens para ampliar.</p>
       </div>
 
       <div class="grid grid--portfolio">
-        <figure class="shot"><img data-full="https://i.ibb.co/7JSbCqDG/IMG-0491.jpg" src="https://i.ibb.co/7JSbCqDG/IMG-0491.jpg" alt="Portfólio 1"><figcaption>byErickGarcia</figcaption></figure>
-        <figure class="shot"><img data-full="https://i.ibb.co/QqWD1yT/IMG-0382.jpg" src="https://i.ibb.co/QqWD1yT/IMG-0382.jpg" alt="Portfólio 2"><figcaption>byErickGarcia</figcaption></figure>
-        <figure class="shot"><img data-full="https://i.ibb.co/C3w2PCbQ/IMG-0396.jpg" src="https://i.ibb.co/C3w2PCbQ/IMG-0396.jpg" alt="Portfólio 3"><figcaption>byErickGarcia</figcaption></figure>
-        <figure class="shot"><img data-full="https://i.ibb.co/8DwYRkkj/IMG-0486.jpg" src="https://i.ibb.co/8DwYRkkj/IMG-0486.jpg" alt="Portfólio 4"><figcaption>byErickGarcia</figcaption></figure>
-        <figure class="shot"><img data-full="https://i.ibb.co/d0PMjbnJ/IMG-0412.jpg" src="https://i.ibb.co/d0PMjbnJ/IMG-0412.jpg" alt="Portfólio 5"><figcaption>byErickGarcia</figcaption></figure>
-        <figure class="shot"><img data-full="https://i.ibb.co/VWyYnbmx/IMG-0385.jpg" src="https://i.ibb.co/VWyYnbmx/IMG-0385.jpg" alt="Portfólio 6"><figcaption>byErickGarcia</figcaption></figure>
+        <figure class="shot"><img data-full="https://i.ibb.co/7JSbCqDG/IMG-0491.jpg" src="https://i.ibb.co/7JSbCqDG/IMG-0491.jpg" alt=""></figure>
+        <figure class="shot"><img data-full="https://i.ibb.co/QqWD1yT/IMG-0382.jpg" src="https://i.ibb.co/QqWD1yT/IMG-0382.jpg" alt=""></figure>
+        <figure class="shot"><img data-full="https://i.ibb.co/C3w2PCbQ/IMG-0396.jpg" src="https://i.ibb.co/C3w2PCbQ/IMG-0396.jpg" alt=""></figure>
+        <figure class="shot"><img data-full="https://i.ibb.co/8DwYRkkj/IMG-0486.jpg" src="https://i.ibb.co/8DwYRkkj/IMG-0486.jpg" alt=""></figure>
+        <figure class="shot"><img data-full="https://i.ibb.co/d0PMjbnJ/IMG-0412.jpg" src="https://i.ibb.co/d0PMjbnJ/IMG-0412.jpg" alt=""></figure>
+        <figure class="shot"><img data-full="https://i.ibb.co/VWyYnbmx/IMG-0385.jpg" src="https://i.ibb.co/VWyYnbmx/IMG-0385.jpg" alt=""></figure>
       </div>
 
       <!-- Lightbox -->
-      <div id="lightbox" class="lightbox" aria-hidden="true">
-        <button class="lightbox__close" aria-label="Fechar">×</button>
-        <img id="lightboxImg" alt="Foto ampliada">
+      <div id="lightbox" class="lightbox" aria-hidden="true" style="display:none">
+        <button class="lightbox__close" aria-label="Fechar">&times;</button>
+        <img id="lightboxImg" alt="">
       </div>
     </section>
 
@@ -124,7 +124,7 @@
           </label>
           <label>Mínimo de fotos que você espera
             <input type="number" min="0" name="minFotos" placeholder="Ex.: 240" />
-            <small class="hint">Obs.: eu entrego todas as fotos boas, sem limite. Esse campo é só pra alinharmos expectativa mínima.</small>
+            <small class="hint">Obs.: eu entrego todas as fotos boas, sem limite. Este campo é só para alinhamento de expectativa.</small>
           </label>
         </div>
 
@@ -187,7 +187,10 @@
     </div>
   </footer>
 
-  <script>window.WHATSAPP_NUMBER="5543988632851";</script>
+  <script>
+    /* Número do WhatsApp em formato E.164 (só dígitos) */
+    window.WHATSAPP_NUMBER = "5543988632851";
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
