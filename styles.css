@@ -1,0 +1,65 @@
+/* Estilo — byErickGarcia Fotografia Premium */
+:root{
+  --bg:#0f0f12; --panel:#15151a; --muted:#9aa0a6; --text:#f5f6f7;
+  --accent:#7c5cff; --radius:14px; --shadow:0 10px 30px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.55}
+img{max-width:100%;display:block;border-radius:12px}
+a{color:var(--text);text-decoration:none}
+.container{width:min(1120px,94vw);margin:0 auto}
+.section{padding:72px 0}
+.muted{color:var(--muted)}
+
+.nav{position:sticky;top:0;z-index:10;background:linear-gradient(0deg, transparent, rgba(15,15,18,.85) 60%);
+  backdrop-filter:saturate(1.2) blur(8px)}
+.nav__inner{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+.logo{font-weight:800}
+.logo span{font-weight:600;color:var(--muted);margin-left:6px}
+.nav nav{display:flex;gap:16px;align-items:center}
+.nav .btn--sm{padding:10px 14px;border:1px solid #333;border-radius:10px}
+
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;padding:56px 0}
+.hero__text h1{font-size:2rem;margin:.2rem 0 1rem}
+.hero__text p{color:var(--muted);margin:0 0 1.2rem}
+.hero__cta{display:flex;gap:12px;margin:8px 0 12px}
+.hero__badges{list-style:none;display:flex;gap:14px;padding:0;margin:12px 0 0 0;color:var(--muted);flex-wrap:wrap}
+.hero__cover img{border-radius:18px;box-shadow:var(--shadow)}
+
+.btn{display:inline-block;padding:14px 18px;background:var(--accent);border-radius:12px;font-weight:800}
+.btn--ghost{background:transparent;border:1px solid #2b2b33}
+
+h2{font-size:1.8rem;margin:0 0 14px}
+.grid{display:grid;gap:16px}
+.grid--portfolio{grid-template-columns:repeat(3,1fr)}
+.grid--pricing{grid-template-columns:repeat(4,1fr);margin-top:16px}
+
+.card{background:var(--panel);padding:22px;border-radius:18px;box-shadow:var(--shadow);position:relative}
+.card--accent{outline:2px solid var(--accent)}
+.card .tag{position:absolute;top:-10px;right:14px;background:var(--accent);padding:6px 10px;border-radius:999px;font-size:.85rem;font-weight:700}
+.price{font-size:2rem;margin:.2rem 0 1rem}
+.features{list-style:none;padding:0;margin:0;display:grid;gap:8px;color:var(--muted)}
+
+.addons{margin-top:28px}
+.addons ul{list-style:disc;margin:8px 0 0 18px;color:var(--muted)}
+
+.form{display:grid;gap:12px;background:var(--panel);padding:18px;border-radius:16px}
+.form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form input,.form textarea, .form select{width:100%;padding:12px 14px;border:1px solid #2b2b33;background:#0f0f14;color:var(--text);border-radius:10px}
+.form button{justify-self:start}
+.total{font-size:1.2rem;margin-top:8px}
+
+.footer{border-top:1px solid #1f1f24;margin-top:56px}
+.footer__inner{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+.to-top{opacity:.7}
+
+@media (max-width: 1020px){
+  .grid--pricing{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width: 680px){
+  .hero{grid-template-columns:1fr;gap:20px}
+  .grid--portfolio{grid-template-columns:1fr 1fr}
+  .grid--pricing{grid-template-columns:1fr}
+  .form .row{grid-template-columns:1fr}
+}
