@@ -11,7 +11,7 @@ if (hamb && menu){
   });
 }
 
-// TABELA DE PREÇOS
+// TABELA DE PREÇOS (atualizada)
 const BASE = {
   eventos: {
     brilho:    { nome: "Pacote Brilho",           preco: 990 },
@@ -24,25 +24,17 @@ const BASE = {
     horizonte: { nome: "Pacote Horizonte", preco: 690 },
     majestade: { nome: "Pacote Majestade", preco: 1190 }
   },
-  extras: {
-    fotoExtra: 15,    // R$ por foto adicional tratada
-    km: 2.60,         // R$ por km
-    album: 520,       // álbum 20×20 (20 páginas)
-    assistenteHora: 220,
-    expressPerc: 0.30, // +30%
-    makingExtra: 240
-  }
+  extras: { fotoExtra:15, km:2.60, album:520, assistenteHora:220, expressPerc:0.30, makingExtra:240 }
 };
 
-// Atualiza valores visuais
+// Atualiza valores visuais nos cards (span[data-key])
 document.querySelectorAll('[data-key]').forEach(el=>{
   const key = el.getAttribute('data-key');
-  const maps = { brilho:BASE.eventos.brilho, encanto:BASE.eventos.encanto, eternidade:BASE.eventos.eternidade, gala:BASE.eventos.gala,
-                 essencia:BASE.retratos.essencia, horizonte:BASE.retratos.horizonte, majestade:BASE.retratos.majestade };
-  if (maps[key]) el.textContent = maps[key].preco;
+  const map = { ...BASE.eventos, ...BASE.retratos };
+  if (map[key]) el.textContent = map[key].preco;
 });
 
-// Preenche select de pacotes
+// Preenche select de pacotes da calculadora
 const tipoSel = document.getElementById('tipo');
 const pacoteSel = document.getElementById('pacote');
 function fillPacotes(){
