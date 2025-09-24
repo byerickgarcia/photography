@@ -1,7 +1,7 @@
-// Ano no rodapé
+// Rodapé
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// MENU MOBILE
+// Menu mobile
 const hamb = document.getElementById('hamb');
 const menu = document.getElementById('menu');
 if (hamb && menu){
@@ -11,30 +11,30 @@ if (hamb && menu){
   });
 }
 
-// TABELA DE PREÇOS (atualizada)
+// Preços revisados (com margem)
 const BASE = {
   eventos: {
-    brilho:    { nome: "Pacote Brilho",           preco: 990 },
-    encanto:   { nome: "Pacote Encanto",          preco: 1690 },
-    eternidade:{ nome: "Pacote Eternidade",       preco: 2290 },
-    gala:      { nome: "Pacote Celebração Total", preco: 3290 }
+    brilho:    { nome: "Brilho",           preco: 990 },
+    encanto:   { nome: "Encanto",          preco: 1690 },
+    eternidade:{ nome: "Eternidade",       preco: 2290 },
+    gala:      { nome: "Celebração Total", preco: 3290 }
   },
   retratos: {
-    essencia:  { nome: "Pacote Essência",  preco: 390 },
-    horizonte: { nome: "Pacote Horizonte", preco: 690 },
-    majestade: { nome: "Pacote Majestade", preco: 1190 }
+    essencia:  { nome: "Essência",  preco: 390 },
+    horizonte: { nome: "Horizonte", preco: 690 },
+    majestade: { nome: "Majestade", preco: 1190 }
   },
   extras: { fotoExtra:15, km:2.60, album:520, assistenteHora:220, expressPerc:0.30, makingExtra:240 }
 };
 
-// Atualiza valores visuais nos cards (span[data-key])
+// Atualiza <span data-key>
 document.querySelectorAll('[data-key]').forEach(el=>{
   const key = el.getAttribute('data-key');
   const map = { ...BASE.eventos, ...BASE.retratos };
   if (map[key]) el.textContent = map[key].preco;
 });
 
-// Preenche select de pacotes da calculadora
+// Popula pacotes da calculadora
 const tipoSel = document.getElementById('tipo');
 const pacoteSel = document.getElementById('pacote');
 function fillPacotes(){
@@ -88,7 +88,7 @@ formCalc.addEventListener('submit', (e)=>{
   const tipo = d.get('tipo');
   const pac = d.get('pacote');
   const nomePacote = BASE[tipo][pac].nome;
-  const msg = `Olá, Erick! Quero uma simulação: ${nomePacote}. Total estimado: R$ ${total.toFixed(2).replace('.', ',')}. Pagamento: 50% no contrato + 50% na entrega das fotos.`;
+  const msg = `Olá, Erick! Quero uma simulação agressiva: ${nomePacote}. Total estimado: R$ ${total.toFixed(2).replace('.', ',')}. Pagamento: 50% no contrato + 50% na entrega das fotos.`;
   window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`,'_blank');
 });
 
